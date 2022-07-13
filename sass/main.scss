@@ -1,0 +1,436 @@
+///Import variblies
+@use "../sass/variablies/variblies.scss" as *;
+
+///Import Mixin 
+@use "../sass/helpers/mixin.scss" as *;
+
+//Global Rules
+*{
+    @include reset();
+}
+//Components
+.center {
+    @include center();
+}
+$socials: ("facebook": #1877f2, "twitter": #1da1f2, "github": #333, "google": #dd4b39);
+
+@each $name, $color in $socials {
+    .#{$name}{
+        font-size: 18px;
+        cursor: pointer;
+        transition: all $transition-time;
+    }
+    .#{$name}:hover{
+        color: $color !important;
+    }
+}
+.main-heading{
+    @include heading;
+}
+.black{
+    background-color: $head-color;
+}
+.transparent{
+    background-color: transparent;
+}
+.warring{
+    color: $main-color;
+}
+//Start Header
+header{
+    position: fixed;
+    width: 100%;
+    background-color: transparent;
+    z-index: 90;
+    .logo {
+        color: $main-color;
+    }
+    nav {
+        ul {
+            li {
+                a{
+                    color: #fff !important;
+                    font-size: 18px;
+                    transition: all $transition-time;
+                }
+                a:hover{
+                    color: $main-color !important;
+                }
+                .active-link{
+                    color: $main-color !important;
+                }
+            }
+        }
+    }
+}
+//End Header
+//Start Home section
+#home {
+    height: 100vh;
+    background-image: url(../images/slider/slider-01.jpg);
+    background-size: cover;
+    position: relative;
+    &::after{
+        content: "";
+        @include overlay(rgba(0,0,0,0.5),0);
+    }
+    .caption{
+        flex-direction: column;
+        position: relative;
+        z-index: 10;
+        span{
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        h1{
+            color: $main-color;
+            font: {
+                size: 60px;
+            }
+        }
+        p,span{
+            color: #fff;
+            font-size: 30px;
+            span{
+                font-weight: normal;
+            }
+        }
+    }
+}
+//End Home Section
+//Start About Section
+#about{
+    .box{
+      position: relative;
+      &::after{
+        content: "";
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        width: 80%;
+        height: 85%;
+        z-index: -1;
+        border: 10px solid $text-color;
+        border-radius: 10px;
+        }
+    @media (max-width:768px) {
+        &::after{
+            display: none;
+        }
+    }
+    }
+    .img {
+        position: relative;
+        overflow: hidden;
+        transition: all $transition-time;
+        .overlay{
+            @include overlay(rgba(0,0,0,0.7),100%);
+            transition: all $transition-time;
+            .social{
+                span{
+                    margin-right: 10px;
+                }
+            }
+        }
+        &:hover .overlay{
+            top: 0;
+        }
+    }
+    .text{
+        h3{
+            position: relative;
+            color: $head-color;
+            font-size: 30px;
+            &::after{
+                content: "";
+                position: absolute;
+                left: -10px;
+                top: 0;
+                height: 100%;
+                width: 4px;
+                background-color: $main-color;
+            }
+        }
+        p{
+            line-height: 1.2;
+            letter-spacing: 1px;
+            color: $text-color;
+        }
+    }
+    .line{
+        border-top: 3px dashed;
+    }
+    .detailed{
+        ul{
+            margin: 0;
+            padding: 0;
+            .right{
+                margin-right: 5px;
+            }
+            .left{
+                color: $text-color;
+                a{
+                    color: $text-color;
+                    text-decoration: none;
+                    transition: all $transition-time;
+                }
+                a:hover{
+                    color: $main-color;
+                }
+            }
+        }
+    }
+    .btns{
+        .btn-main{
+            outline: none;
+            border: 1px solid $main-color;
+            background-color: transparent;
+            color: $text-color;
+            margin-right: 10px;
+            transition: all $transition-time;
+            span{
+                margin-left: 5px;
+            }
+        }
+        .btn-main:hover{
+            color: #fff;
+            background-color: $main-color;
+        }
+    }
+}
+//End About Section
+//Start Services Section
+#services{
+    background-color: $section-bg-color;
+    .card{
+        padding: 10px 5px;
+        background-color: transparent;
+        border: none;
+        transition: all $transition-time;
+        &:hover{
+            background-color: #fff;
+            box-shadow: 2px 0px 24px -1px rgba(0,0,0,0.45);
+            -webkit-box-shadow: 2px 0px 24px -1px rgba(0,0,0,0.45);
+            -moz-box-shadow: 2px 0px 24px -1px rgba(0,0,0,0.45);
+        }
+        .icon{
+            color: $main-color;
+            transition: all $transition-time;
+        }
+        &:hover .icon{
+            transform: scale(1.4);
+        }
+        h4{
+            color: $head-color;
+        }
+        p{
+            color: $text-color;
+        }
+    }
+}
+//End Services Section
+//Start Protfilio Section
+#protfolio{
+    .nav{
+        ul{
+            justify-content: space-between;
+            gap: 30px;
+            li{
+                a{
+                    text-decoration: none;
+                    font-size: 20px;
+                    color: $text-color;
+                    transition: all $transition-time;
+                    &:hover{
+                        color: $main-color;
+                    }
+                }
+                .active{
+                    color: $main-color;
+                }
+            }
+        }
+    }
+    .image{
+        position: relative;
+        transition: all $transition-time;
+        .overlay{
+            @include overlay(rgba(0,0,0,0.5),0);
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 10px;
+            opacity: 0;
+            transition: all $transition-time;
+            span{
+                color: $main-color;
+            }
+        }
+        &:hover .overlay{
+            opacity: 1;
+        }
+    }
+}
+//End Protfilio Section
+//Start Static Section
+#static{
+    background-color: $section-bg-color;
+    .icon{
+        color: $main-color;
+    }
+    h4{
+        color: $head-color;
+    }
+    p{
+        color: $text-color;
+    }
+}
+//End Static Section
+//Start Testimonial Section
+#testimonial{
+    .card{
+        background-color: $section-bg-color;
+        position: relative;
+        width: 60%;
+        flex-direction: row;
+        gap: 100px;
+        &::after{
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-top: 150px solid #ff305b;
+            border-right: 150px solid transparent;
+        }
+        .img{
+            img{
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                z-index: 1;
+                border-radius: 50%;
+                width: 100px;
+                height: 100px;
+            }
+        }
+        .info{
+            h4{
+                color: $head-color;
+            }
+            span{
+                color: $text-color;
+                .icon{
+                    margin-right: 5px;
+                }
+            }
+            p{
+                color: $text-color;
+            }
+            .rate{
+                span{
+                    color: #f1c30d;
+                }
+            }
+        }
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
+    }
+}
+//End Testimonial Section
+//Start Blog Section
+#blog{
+    background-color: $section-bg-color;
+    .card{
+        .info{
+            .date{
+                color: $text-color;
+            }
+            h4{
+                a{
+                    text-decoration: none;
+                    color: $head-color;
+                    transition: all $transition-time;
+                    &:hover{
+                        color: $main-color;
+                    }
+                }
+            }
+            p{
+                color: $text-color;
+            }
+            .txt{
+                color: $text-color;
+                cursor: pointer;
+                transition: all $transition-time;
+                .icon{
+                    margin-left: 5px;
+                }
+                &:hover{
+                    color: $main-color;
+                }
+            }
+        }
+    }
+}
+//End Blog Section
+//Start Contact Section
+#contact{
+    .form{
+        flex-direction: column;
+        gap: 25px;
+        position: relative;
+        input,textarea{
+            outline: none;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            &::placeholder{
+                color: $text-alt-color;
+            }
+            &:focus{
+                border-color: $main-color;
+            }
+        }
+        .top{
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            input{
+                width: 50%;
+            }
+        }
+        .btn-main{
+            outline: none;
+            border: 1px solid $main-color;
+            background-color: transparent;
+            color: $text-color;
+            transition: all $transition-time;
+            &:hover{
+                color: #fff;
+                background-color: $main-color;
+            }
+         }
+    }   
+}
+//End Contact Section
+//Start Footer Section
+footer{
+    background-color: $head-color;
+    span{
+        margin-right: 10px;
+    }
+    p{
+        a{
+            text-decoration: none;
+            color: #fff;
+            transition: all $transition-time;
+            &:hover{
+                color: $main-color;
+            }
+        }
+    }
+}
+//End Footer Section
